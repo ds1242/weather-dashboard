@@ -1,3 +1,28 @@
-.border{
-    border:3px solid black;
+:root {
+    --primary_color:#80A1C1;
+    --secondary_color: #F6F1D1;
+    --tertiary_color: #285238;
+    --quartiary_color: #384E77;
+    --cinquieme_color: #EAD637;
 }
+* {
+    box-sizing: border-box;
+}
+
+header{
+    background-image: linear-gradient(to right, var(--quartiary_color), var(--primary_color));
+    height: 100px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+
+
+
+
