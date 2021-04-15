@@ -10,7 +10,10 @@
 }
 
 header{
-    background-image: linear-gradient(to right, var(--quartiary_color), var(--primary_color));
+    background-image: linear-gradient(
+        to right, 
+        var(--quartiary_color), 
+        var(--primary_color));
     height: 100px;
     color: white;
     display: flex;
