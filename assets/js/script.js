@@ -127,7 +127,15 @@ var formSubmitHandler = function(event){
 }
 $(document).ready(function(){
     for(var i = 0; i < cityNameHistory.length; i++){
-        console.log(cityNameHistory[i]);
+        var searchHistory = document.querySelector("#search-history")
+        var historyButton = document.createElement("button")
+        historyButton.type = "submit";
+        historyButton.className ='btn history-button';
+        historyButton.setAttribute("id", "history-button");
+        historyButton.textContent = cityNameHistory[i];
+        searchHistory.appendChild(historyButton);
+    
+        historyButton.addEventListener("click", historyBtn);
     }
 })
 
