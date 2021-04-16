@@ -7,6 +7,7 @@ var cityInputEl = document.getElementById('city');
 var userFormEl = document.getElementById('user-form')
 var key = '1eec8ff5f151483ae61036bcfff1b27e'
 
+// use openweather api to get city geo coords
 function getCityCoord(name){
     var geoApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + name + '&limit=1&appid=' + key;
     fetch(geoApiUrl)
@@ -56,9 +57,7 @@ function setCurrentWeather(cityName, data){
 
     // display current weather information
     var newDate = moment.unix(date).format('L');
-    console.log(icon); 
-    var iconURL = 'http://openweathermap.org/img/w/10d.png';
-    
+    // add city name with date and then append current weather icon 
     currentCity.textContent = cityName + " (" + newDate + ")";  
     $('#currentCity').append('<img src="http://openweathermap.org/img/w/' + icon + '.png"/>') 
     currentTemp.textContent = 'Temp: ' + temp + '\xB0 F';            
@@ -78,7 +77,7 @@ function setCurrentWeather(cityName, data){
         var futureTemp = data.daily[i].temp.max;
         var futureWind = data.daily[i].wind_speed;
         var weatherIcon = data.daily[i].weather[0].icon;
-
+        // display next five days in cards
         $('.card-holder')
             .append('<div class="card col-sm-2 forecastCard"> <h4 class="card-header" id="forecastDate"> ' + newDate + ' </h4><ul class="list-group list-group-flush">'
                 + '<li class="list-group-item"><img src="http://openweathermap.org/img/w/' + weatherIcon + '.png" /> </li>'
@@ -89,7 +88,7 @@ function setCurrentWeather(cityName, data){
 }
 
 
-
+// user enters city value and kicks off pulling 
 var formSubmitHandler = function(event){
     event.preventDefault();
     
@@ -105,24 +104,5 @@ var formSubmitHandler = function(event){
     }
 }
 
-
-
-
-
-
-    // var date = data.daily[1].dt;
-    // var newDate = moment.unit(date).format('L');
-
-    // var futureCard = $('.card-holder')
-    //     .append('<div class="card"> <div class="card"> <h4 class="card-header" id="forecastDate">' + newDate + '</h4></div></div>')
-    
-
-// function iconSet(icon){
-//     var currentCity = document.getElementById('currentCity');
-//     if(icon === 'Clear'){
-//         currentCity.addClass('bi bi-brightness-high')
-//     }
-
-// }
 
 userFormEl.addEventListener("submit",formSubmitHandler);
