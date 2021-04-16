@@ -69,8 +69,10 @@ main{
     box-shadow: 2px 4px black;
 
 }
-
+.card-holder{
+    display:flex;
+    justify-content: space-evenly;
+}
 .forecastCard{
-    word-wrap: normal;
-    text-align: center;
+    padding:0;
 }

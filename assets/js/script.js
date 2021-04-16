@@ -65,14 +65,25 @@ function setCurrentWeather(cityName, data){
     
     // get next five day weather information and build cards displaying that
     for(var i = 1; i < 6; i++){
+        
         var date = data.daily[i].dt;
         var newDate = moment.unix(date).format('L');
-        var tempTomorrow = data.daily[i].humidity;
-        console.log("tomorrow humidity " + tempTomorrow);
+        var futureHum= data.daily[i].humidity;
+        var futureTemp = data.daily[i].temp.max;
+        var futureWind = data.daily[i].wind_speed;
+        console.log("tomorrow temp " + futureTemp);
         console.log(newDate);
-        var futureCard = $('.card-holder')
-            .append('<div class="col-sm-2"> <div class="card forecastCard"> <h4 class="card-header" id="forecastDate"> ' + newDate + ' <ul class="list-group list-group-flush"></h4></div></div>')
-
+        $('.card-holder')
+            .append('<div class="card col-sm-2 forecastCard"> <h4 class="card-header" id="forecastDate"> ' + newDate + ' </h4><ul class="list-group list-group-flush">'
+                + '<li class="list-group-item"> Temp: ' + futureTemp + '</li>' 
+                + '<li class="list-group-item"> Humidity: ' + futureHum + '</li>' 
+                + '<li class="list-group-item"> Wind: ' + futureWind + '</li></ul></div></div>')
+        // var futureHum = 
+        // $('.list-group')
+        // .append('<li class="list-group-item"> Temp: ' + futureTemp + '</li>' 
+        // + '<li class="list-group-item"> Humidity: ' + futureHum + '</li>' 
+        // + '<li class="list-group-item"> Wind: ' + futureWind + '</li>')
+        // $('.list-group').append('<li class="list-group-item"> Humidity: ' + futureHum + '</li>')
     }
         
         
@@ -99,6 +110,7 @@ var formSubmitHandler = function(event){
         getCityCoord(cityVal);
         // fiveDay(cityVal)
         cityInputEl.value = "";
+        $('card-holder')
         
     } else {
         alert("Please enter a valid city name")
