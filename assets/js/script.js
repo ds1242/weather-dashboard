@@ -87,17 +87,26 @@ function setCurrentWeather(cityName, data){
     }      
 }
 
+function storeCityVal(name){
+    var searchHistory = document.querySelector("#search-history")
+    var historyButton = document.createElement("button")
+    historyButton.type = "submit";
+    historyButton.className ='btn';
+    historyButton.textContent = name;
+
+    searchHistory.appendChild(historyButton);
+
+}
 
 // user enters city value and kicks off pulling 
 var formSubmitHandler = function(event){
     event.preventDefault();
-    
-    var cityVal = cityInputEl.value.trim();
-    // console.log(cityVal)
-    
+    // get value that user enters
+    var cityVal = cityInputEl.value.trim(); 
+    // if a valid input is entered   
     if(cityVal){
         getCityCoord(cityVal);
-        // fiveDay(cityVal)
+        storeCityVal(cityVal);
         cityInputEl.value = "";        
     } else {
         alert("Please enter a valid city name")
