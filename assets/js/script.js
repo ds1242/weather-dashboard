@@ -20,11 +20,12 @@ function getCityCoord(name){
     .then(function(data){
         var lat = data[0].lat;
         var lon = data[0].lon;
-        getWeather(lat, lon);
+        var cityVal = data[0].name;
+        getWeather(cityVal, lat, lon);
     })
 }
 
-function getWeather(lat, lon){
+function getWeather(cityName, lat, lon){
     
     var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&exclude=hourly&appid=1eec8ff5f151483ae61036bcfff1b27e';
     fetch(apiUrl)
@@ -35,7 +36,7 @@ function getWeather(lat, lon){
     })
     .then(function(data){
         console.log(data);
-        setCurrentWeather(data);
+        setCurrentWeather(cityName, data);
     })
     .catch(function(error){        
         console.log("Unable to connect to OpenWeatherMap")
@@ -43,15 +44,17 @@ function getWeather(lat, lon){
 }
 
 // load the current weather information into 
-function setCurrentWeather(data){
+function setCurrentWeather(cityName, data){
     var temp = data.current.temp;
         var wind = data.current.wind_speed;
         var uvi = data.current.uvi;
         var humidity = data.current.humidity;
         var icon = data.current.weather[0].main;
+        var date = data.current.dt;
 
+        var newDate = moment.unix(date).format('L');
         console.log(icon);   
-             
+        currentCity.textContent = cityName + " (" + newDate + ")";     
         currentTemp.textContent = 'Temp: ' + temp + '\xB0 F';            
         windSpeed.textContent = 'Wind: ' + wind + ' MPH';        
         currentUVI.textContent = 'UVI: ' + uvi;       
@@ -66,7 +69,7 @@ var formSubmitHandler = function(event){
     if(cityVal){
         getCityCoord(cityVal);
         cityInputEl.value = "";
-        currentCity.textContent = cityVal;
+        
     } else {
         alert("Please enter a valid city name")
     }
@@ -81,4 +84,3 @@ var formSubmitHandler = function(event){
 // }
 
 userFormEl.addEventListener("submit",formSubmitHandler);
-// getWeather();

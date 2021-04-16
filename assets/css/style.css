@@ -4,6 +4,7 @@
     --tertiary_color: #285238;
     --quartiary_color: #384E77;
     --cinquieme_color: #EAD637;
+    --border-radius: 10px;
 }
 * {
     box-sizing: border-box;
@@ -26,6 +27,38 @@ h1{
     font-size: 40px;
 }
 
+/* FORM */
+.form-label,
+.form-input,
+.form-textarea{
+    display:block;
+}
 
+.form-label {
+    font-size: 1.1rem;
+    margin: 0 0 0 5px;
+  }
+  
+.form-input {
+    width: 100%;
+    padding: 3%;
+    margin: 5px 0;
+    font-size: 1.2rem;
+    border: 2px solid var(--quartiary_color);
+    border-radius: var(--border-radius)
+}
 
+.btn {
+    font-size: 1.3rem;
+    text-decoration:none;
+    padding: 6px 5px;
+    width: 100%;
+    display: block;
+    margin: 5px 0;
+    border-radius: var(--border-radius);
+    color:var(--primary_color);
+    background-color: var(--quartiary_color);
+    box-shadow: 2px 4px black;
+
+}
 
