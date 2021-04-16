@@ -37,6 +37,7 @@ function getWeather(cityName, lat, lon){
     .then(function(data){
         console.log(data);
         setCurrentWeather(cityName, data);
+        
     })
     .catch(function(error){        
         console.log("Unable to connect to OpenWeatherMap")
@@ -59,6 +60,10 @@ function setCurrentWeather(cityName, data){
         windSpeed.textContent = 'Wind: ' + wind + ' MPH';        
         currentUVI.textContent = 'UVI: ' + uvi;       
         currentHum.textContent = 'Humidity: ' + humidity + ' %';
+        
+        
+
+        
 }
 var formSubmitHandler = function(event){
     event.preventDefault();
@@ -75,6 +80,16 @@ var formSubmitHandler = function(event){
     }
 }
 
+function fiveDay(data){
+    $('#forecastDate').each(function(i){
+        var date = data.daily[i].dt;
+
+        var newDate = moment.unix(date).format('L');
+        console.log(newDate);
+         
+    })
+    
+}
 // function iconSet(icon){
 //     var currentCity = document.getElementById('currentCity');
 //     if(icon === 'Clear'){
