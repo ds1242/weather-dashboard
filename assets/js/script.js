@@ -12,7 +12,7 @@ var cityNameHistory = JSON.parse(localStorage.getItem("cityNameHistory")) || [];
 
 // use openweather api to get city geo coords
 function getCityCoord(name){
-    var geoApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + name + '&limit=1&appid=' + key;
+    var geoApiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + name + '&limit=1&appid=' + key;
     fetch(geoApiUrl)
     .then(function(response){
         if(response.ok){
@@ -62,7 +62,7 @@ function setCurrentWeather(cityName, data){
     var newDate = moment.unix(date).format('L');
     // add city name with date and then append current weather icon 
     currentCity.textContent = cityName + " (" + newDate + ")";  
-    $('#currentCity').append('<img src="http://openweathermap.org/img/w/' + icon + '.png"/>') 
+    $('#currentCity').append('<img src="https://openweathermap.org/img/w/' + icon + '.png"/>') 
     currentTemp.textContent = 'Temp: ' + temp + '\xB0 F';            
     windSpeed.textContent = 'Wind: ' + wind + ' MPH';        
     currentUVI.textContent = 'UVI: ' + uvi;       
@@ -83,7 +83,7 @@ function setCurrentWeather(cityName, data){
         // display next five days in cards
         $('.card-holder')
             .append('<div class="card col-sm-2 forecastCard"> <h4 class="card-header" id="forecastDate"> ' + newDate + ' </h4><ul class="list-group list-group-flush">'
-                + '<li class="list-group-item"><img src="http://openweathermap.org/img/w/' + weatherIcon + '.png" /> </li>'
+                + '<li class="list-group-item"><img src="https://openweathermap.org/img/w/' + weatherIcon + '.png" /> </li>'
                 + '<li class="list-group-item"> Temp: ' + futureTemp + '</li>' 
                 + '<li class="list-group-item"> Humidity: ' + futureHum + '</li>' 
                 + '<li class="list-group-item"> Wind: ' + futureWind + '</li></ul></div></div>')
