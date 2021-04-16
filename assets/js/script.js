@@ -51,13 +51,16 @@ function setCurrentWeather(cityName, data){
     var wind = data.current.wind_speed;
     var uvi = data.current.uvi;
     var humidity = data.current.humidity;
-    var icon = data.current.weather[0].main;
+    var icon = data.current.weather[0].icon;
     var date = data.current.dt;
 
     // display current weather information
     var newDate = moment.unix(date).format('L');
-    console.log(icon);   
-    currentCity.textContent = cityName + " (" + newDate + ")";     
+    console.log(icon); 
+    var iconURL = 'http://openweathermap.org/img/w/10d.png';
+    
+    currentCity.textContent = cityName + " (" + newDate + ")";  
+    $('#currentCity').append('<img src="http://openweathermap.org/img/w/' + icon + '.png"/>') 
     currentTemp.textContent = 'Temp: ' + temp + '\xB0 F';            
     windSpeed.textContent = 'Wind: ' + wind + ' MPH';        
     currentUVI.textContent = 'UVI: ' + uvi;       
@@ -68,16 +71,17 @@ function setCurrentWeather(cityName, data){
 
     // get next five day weather information and build cards displaying that
     for(var i = 1; i < 6; i++){
-        
+        // get data needed to display for five day forecast
         var date = data.daily[i].dt;
         var newDate = moment.unix(date).format('L');
         var futureHum= data.daily[i].humidity;
         var futureTemp = data.daily[i].temp.max;
         var futureWind = data.daily[i].wind_speed;
-        console.log("tomorrow temp " + futureTemp);
-        console.log(newDate);
+        var weatherIcon = data.daily[i].weather[0].icon;
+
         $('.card-holder')
             .append('<div class="card col-sm-2 forecastCard"> <h4 class="card-header" id="forecastDate"> ' + newDate + ' </h4><ul class="list-group list-group-flush">'
+                + '<li class="list-group-item"><img src="http://openweathermap.org/img/w/' + weatherIcon + '.png" /> </li>'
                 + '<li class="list-group-item"> Temp: ' + futureTemp + '</li>' 
                 + '<li class="list-group-item"> Humidity: ' + futureHum + '</li>' 
                 + '<li class="list-group-item"> Wind: ' + futureWind + '</li></ul></div></div>')
