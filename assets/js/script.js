@@ -8,6 +8,8 @@ var userFormEl = document.getElementById('user-form')
 var historyEl = document.querySelector('history-button');
 var key = '1eec8ff5f151483ae61036bcfff1b27e'
 
+var cityNameHistory = JSON.parse(localStorage.getItem("cityNameHistory")) || [];
+
 // use openweather api to get city geo coords
 function getCityCoord(name){
     var geoApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + name + '&limit=1&appid=' + key;
@@ -106,19 +108,14 @@ function historyBtn(event){
     getCityCoord(buttonText);
 }
 
-// $('#history-button').on("click", historyBtn);
-
-
-// function historyClick(){
-//     console.log("stuff");
-    
-// }
 
 // user enters city value and kicks off pulling 
 var formSubmitHandler = function(event){
     event.preventDefault();
     // get value that user enters
-    var cityVal = cityInputEl.value.trim(); 
+    var cityVal = cityInputEl.value.trim();
+    cityNameHistory.push(cityVal);
+    localStorage.setItem('cityNameHistory', JSON.stringify(cityNameHistory)); 
     // if a valid input is entered   
     if(cityVal){
         getCityCoord(cityVal);
@@ -128,7 +125,11 @@ var formSubmitHandler = function(event){
         alert("Please enter a valid city name")
     }
 }
-
+$(document).ready(function(){
+    for(var i = 0; i < cityNameHistory.length; i++){
+        console.log(cityNameHistory[i]);
+    }
+})
 
 userFormEl.addEventListener("submit",formSubmitHandler);
 
