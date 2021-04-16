@@ -62,7 +62,10 @@ function setCurrentWeather(cityName, data){
     windSpeed.textContent = 'Wind: ' + wind + ' MPH';        
     currentUVI.textContent = 'UVI: ' + uvi;       
     currentHum.textContent = 'Humidity: ' + humidity + ' %';
-    
+
+    // clear card holder if searching for a new city
+    $('.card-holder').empty();
+
     // get next five day weather information and build cards displaying that
     for(var i = 1; i < 6; i++){
         
@@ -78,26 +81,9 @@ function setCurrentWeather(cityName, data){
                 + '<li class="list-group-item"> Temp: ' + futureTemp + '</li>' 
                 + '<li class="list-group-item"> Humidity: ' + futureHum + '</li>' 
                 + '<li class="list-group-item"> Wind: ' + futureWind + '</li></ul></div></div>')
-        // var futureHum = 
-        // $('.list-group')
-        // .append('<li class="list-group-item"> Temp: ' + futureTemp + '</li>' 
-        // + '<li class="list-group-item"> Humidity: ' + futureHum + '</li>' 
-        // + '<li class="list-group-item"> Wind: ' + futureWind + '</li>')
-        // $('.list-group').append('<li class="list-group-item"> Humidity: ' + futureHum + '</li>')
-    }
-        
-        
+    }      
 }
-// function fiveDay(name){
-//     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + name + '&appid=' + key;
-//     fetch(apiUrl)
-//     .then(function(response){
-//         return response.json();
-//     })
-//     .then(function(data){
-//         console.log(data);
-//     })
-// }
+
 
 
 var formSubmitHandler = function(event){
@@ -109,9 +95,7 @@ var formSubmitHandler = function(event){
     if(cityVal){
         getCityCoord(cityVal);
         // fiveDay(cityVal)
-        cityInputEl.value = "";
-        $('card-holder')
-        
+        cityInputEl.value = "";        
     } else {
         alert("Please enter a valid city name")
     }
