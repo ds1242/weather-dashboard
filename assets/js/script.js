@@ -5,6 +5,7 @@ var currentUVI = document.getElementById('uvi');
 var currentHum = document.getElementById('humidity');
 var cityInputEl = document.getElementById('city');
 var userFormEl = document.getElementById('user-form')
+var historyEl = document.querySelector('history-button');
 var key = '1eec8ff5f151483ae61036bcfff1b27e'
 
 // use openweather api to get city geo coords
@@ -91,12 +92,27 @@ function storeCityVal(name){
     var searchHistory = document.querySelector("#search-history")
     var historyButton = document.createElement("button")
     historyButton.type = "submit";
-    historyButton.className ='btn';
+    historyButton.className ='btn history-button';
+    historyButton.setAttribute("id", "history-button");
     historyButton.textContent = name;
-
     searchHistory.appendChild(historyButton);
-
+    
+    historyButton.addEventListener("click", historyBtn);
+    
 }
+
+function historyBtn(event){
+    var buttonText = $(this).text();
+    getCityCoord(buttonText);
+}
+
+// $('#history-button').on("click", historyBtn);
+
+
+// function historyClick(){
+//     console.log("stuff");
+    
+// }
 
 // user enters city value and kicks off pulling 
 var formSubmitHandler = function(event){
@@ -115,3 +131,4 @@ var formSubmitHandler = function(event){
 
 
 userFormEl.addEventListener("submit",formSubmitHandler);
+
