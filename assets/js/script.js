@@ -71,8 +71,8 @@ function setCurrentWeather(cityName, data){
         console.log("tomorrow humidity " + tempTomorrow);
         console.log(newDate);
         var futureCard = $('.card-holder')
-            .append('<div class="col-md-2 "> <div class="card"> <h4 class="card-header" id="forecastDate">' + newDate + '</h4></div></div>')
-            
+            .append('<div class="col-sm-2"> <div class="card forecastCard"> <h4 class="card-header" id="forecastDate"> ' + newDate + ' <ul class="list-group list-group-flush"></h4></div></div>')
+
     }
         
         

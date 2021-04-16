@@ -7,6 +7,8 @@
     --border-radius: 10px;
 }
 * {
+    margin: 0;
+    padding:0;
     box-sizing: border-box;
 }
 
@@ -26,7 +28,13 @@ h1{
     align-items: center;
     font-size: 40px;
 }
-
+h4{
+    font-size: 16px;
+}
+main{
+    width: auto;
+    margin: 0;
+}
 /* FORM */
 .form-label,
 .form-input,
@@ -62,3 +70,7 @@ h1{
 
 }
 
+.forecastCard{
+    word-wrap: normal;
+    text-align: center;
+}
