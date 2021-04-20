@@ -50,6 +50,7 @@ function getWeather(cityName, lat, lon){
 
 // load the current weather information into 
 function setCurrentWeather(cityName, data){
+    $("#uvi").find("span").remove();
     // get current weather information
     var temp = data.current.temp;
     var wind = data.current.wind_speed;
@@ -57,6 +58,8 @@ function setCurrentWeather(cityName, data){
     var humidity = data.current.humidity;
     var icon = data.current.weather[0].icon;
     var date = data.current.dt;
+    
+    
 
     // display current weather information
     var newDate = moment.unix(date).format('L');
@@ -65,12 +68,22 @@ function setCurrentWeather(cityName, data){
     $('#currentCity').append('<img src="https://openweathermap.org/img/w/' + icon + '.png"/>') 
     currentTemp.textContent = 'Temp: ' + temp + '\xB0 F';            
     windSpeed.textContent = 'Wind: ' + wind + ' MPH';        
-    currentUVI.textContent = 'UVI: ' + uvi;       
+    currentUVI.textContent = 'UVI: ' + uvi;  
     currentHum.textContent = 'Humidity: ' + humidity + ' %';
-
     // clear card holder if searching for a new city
     $('.card-holder').empty();
-
+    // add color dot based on uvi
+    if(uvi > 0 && uvi < 3){        
+        $("#uvi").append('<span class="dot1"></span>')
+        console.log("green");
+    } else if(uvi > 3 && uvi < 8){        
+        $("#uvi").append('<span class="dot2"></span>')
+        console.log("orange");
+    } else if(uvi > 8){        
+        $("#uvi").append('<span class="dot3"></span>')
+        console.log("red");
+    }
+ 
     // get next five day weather information and build cards displaying that
     for(var i = 1; i < 6; i++){
         // get data needed to display for five day forecast
