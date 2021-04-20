@@ -30,18 +30,16 @@ function getCityCoord(name){
 }
 
 function getWeather(cityName, lat, lon){
-    
+    // create url to fetch weather information using lat and lon from geo api
     var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&units=imperial&exclude=hourly&appid=' + key;
     fetch(apiUrl)
     .then(function(response){
         // response.json();
         return response.json();
-
     })
     .then(function(data){
         console.log(data);
-        setCurrentWeather(cityName, data);
-        
+        setCurrentWeather(cityName, data);        
     })
     .catch(function(error){        
         console.log("Unable to connect to OpenWeatherMap")
@@ -75,13 +73,10 @@ function setCurrentWeather(cityName, data){
     // add color dot based on uvi
     if(uvi > 0 && uvi < 3){        
         $("#uvi").append('<span class="dot1"></span>')
-        console.log("green");
     } else if(uvi > 3 && uvi < 8){        
         $("#uvi").append('<span class="dot2"></span>')
-        console.log("orange");
     } else if(uvi > 8){        
         $("#uvi").append('<span class="dot3"></span>')
-        console.log("red");
     }
  
     // get next five day weather information and build cards displaying that
@@ -102,7 +97,7 @@ function setCurrentWeather(cityName, data){
                 + '<li class="list-group-item"> Wind: ' + futureWind + '</li></ul></div></div>')
     }      
 }
-
+// function to create history buttons and add event listeners to them
 function storeCityVal(name){
     var searchHistory = document.querySelector("#search-history")
     var historyButton = document.createElement("button")
@@ -110,12 +105,10 @@ function storeCityVal(name){
     historyButton.className ='btn history-button';
     historyButton.setAttribute("id", "history-button");
     historyButton.textContent = name;
-    searchHistory.appendChild(historyButton);
-    
-    historyButton.addEventListener("click", historyBtn);
-    
+    searchHistory.appendChild(historyButton);    
+    historyButton.addEventListener("click", historyBtn);    
 }
-
+// function to initial search based on button click
 function historyBtn(event){
     var buttonText = $(this).text();
     getCityCoord(buttonText);
@@ -138,6 +131,7 @@ var formSubmitHandler = function(event){
         alert("Please enter a valid city name")
     }
 }
+// create history items if applicable
 $(document).ready(function(){
     for(var i = 0; i < cityNameHistory.length; i++){
         var searchHistory = document.querySelector("#search-history")
@@ -151,6 +145,6 @@ $(document).ready(function(){
         historyButton.addEventListener("click", historyBtn);
     }
 })
-
+// add event listener to search button
 userFormEl.addEventListener("submit",formSubmitHandler);
 

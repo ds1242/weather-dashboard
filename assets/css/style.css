@@ -35,7 +35,7 @@ main{
     width: auto;
     margin: 0;
 }
-/* FORM */
+/* Form styling */
 .form-label,
 .form-input,
 .form-textarea{
@@ -68,6 +68,7 @@ main{
     box-shadow: 2px 4px black;
 
 }
+/* forecast card styling */
 .card-holder{
     display:flex;
     justify-content: space-evenly;
@@ -86,7 +87,7 @@ main{
     background-color: var(--primary_color);
     color: white;
 }
-
+/* color dot sytling for UV index */
 .dot1 {
     height: 25px;
   width: 25px;
