@@ -44,7 +44,7 @@ https://https://ds1242.github.io/weather-dashboard/
 
 #### Page open whe user has searched in the past
 
-<img width="700" src="./assets/images/page-load-hisotry.jpg" alt="page opened with search history buttons"/>
+<img width="700" src="./assets/images/page-load-history.jpg" alt="page opened with search history buttons"/>
 
 #### Information displayed to user after searching for a city
 
