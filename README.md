@@ -34,7 +34,7 @@ THEN I am again presented with current and future conditions for that city
 
 ## Live Link
 
-https://https://ds1242.github.io/weather-dashboard/
+https://ds1242.github.io/weather-dashboard/
 
 ## Screenshots
 
