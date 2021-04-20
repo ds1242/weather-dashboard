@@ -2,7 +2,7 @@
 
 ## About/Description
 
-   
+David's weather dashboard allows a user to search by a city.  The city value is passed into the openweather geo finder api to find the latitude and longitude of the city.  It then passes those values into the openweather forecast api where it loads the city name, current temp, wind speed, humidity, and UV index with a color dot for the user to read.  It will display the next five days in cards below for the user as well.  It uses moment.js to determine the date.  It uses local storage to create buttons for the user to click and search for that information again.     
 
 ### User/Story
 
@@ -42,4 +42,10 @@ https://https://ds1242.github.io/weather-dashboard/
 
 <img width="700" src="./assets/images/page-open-blank.jpg" alt="page initially opened"/>
 
+#### Page open whe user has searched in the past
 
+<img width="700" src="./assets/images/page-load-hisotry.jpg" alt="page opened with search history buttons"/>
+
+#### Information displayed to user after searching for a city
+
+<img width="700" src="./assets/images/information-displayed.jpg" alt="display current and future forecast"/>
